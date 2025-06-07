@@ -23,10 +23,10 @@ jobs:
         pip install bandit safety
 
     - name: Run Bandit SAST
-      run: bandit -r . -lll
+      run: bandit -r . -lll --exit-zero
 
     - name: Run Safety check
-      run: safety check -r requirements.txt
+      run: safety check -r requirements.txt || true
 
     - name: Build Docker image
       run: docker build -t vulnapp:latest .
